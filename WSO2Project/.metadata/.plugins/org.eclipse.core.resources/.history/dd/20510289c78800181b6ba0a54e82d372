@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/country" name="countryDetailAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/get/iso2code/{code}">
+    <inSequence>
+      <log level="full"/>
+      <send>
+        <endpoint>
+          <http method="get" trace="disable" uri-template="http://services.groupkt.com/country/get/iso2code/{code}"/>
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>

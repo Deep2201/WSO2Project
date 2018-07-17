@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/country" name="countryDetailAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/get/iso2code/{code}">
+    <inSequence>
+      <log level="full"/>
+      <send>
+        <endpoint>
+          <address format="rest" trace="disable" uri="http://services.groupkt.com/country/get/iso2code/IN"/>
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <log level="full"/>
+      <property name="CONTENT_TYPE" scope="axis2" type="STRING" value="application/json"/>
+      <property name="REQUEST_HOST_HEADER" scope="axis2" type="STRING" value="maps.googleapis.com"/>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>

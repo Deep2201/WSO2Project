@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/country" name="countryDetailAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/get/iso2code/{code}">
+    <inSequence>
+      <log level="full"/>
+      <property
+        expression="fn:concat('/get/iso2code/',get-property('uri.var.code'))"
+        name="REST_URL_POSTFIX" scope="axis2" type="STRING"/>
+      <send/>
+    </inSequence>
+    <outSequence>
+      <log level="full"/>
+      <property name="CONTENT_TYPE" scope="axis2" type="STRING" value="application/json"/>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>
